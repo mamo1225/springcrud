@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>List page</title>
+<link th:href="@{/css/jquery.resizableColumns.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+        <table>
+            <thead>
+                <tr>
+                    <th>Office54</th>
+                    <th>Python</th>
+                    <th>jQuery</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>FiveFour</td>
+                    <td>Django</td>
+                    <td>javascript</td>
+                </tr>
+                <tr>
+                    <td>Great</td>
+                    <td>Perfect</td>
+                    <td>Amaging</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script th:src="@{/js/store.legacy.min.js}"></script>
+        <script th:src="@{/js/jquery.resizableColumns.js}"></script>
+        <script>
+              $(function() {
+                $("table").resizableColumns({});
+              });
+              $(function() {
+                $("table").resizableColumns({
+                  store : window.store
+                });
+              });
+        </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Create page</title>
+</head>
+<body>
+    <p th:text="${msg}">please wait...</p>
+
+    <a th:href="@{/samplemenu}">サンプルメニューに戻る</a><br/>
+
+    <form th:with="action = ${isConfirm} ? @{/edit} : @{/confirmEdit}" method="POST" th:object="${orderForm}" th:action="${action}">
+        <p>更新画面</p>
+        <table border="1">
+            <div th:with="" th:replace="~{common/input_field :: inputField(${isConfirm}, '注文ID', 'orderId')}" />
+            <div th:with="" th:replace="~{common/input_field :: inputField(${isConfirm}, '注文者', 'orderer')}" />
+            <div th:with="" th:replace="~{common/input_field :: inputField(${isConfirm}, '商品名', 'productName')}" />
+            <div th:with="" th:replace="~{common/input_field :: inputField(${isConfirm}, '商品数', 'orderQuantity')}" />
+            <div th:with="" th:replace="~{common/input_field :: inputField(${isConfirm}, '注文日', 'orderDate')}" />
+            <div th:with="" th:replace="~{common/input_field :: inputField(${isConfirm}, '住所', 'adress')}" />
+            <div th:with="" th:replace="~{common/input_field :: inputField(${isConfirm}, '電話番号', 'tel')}" />
+            <tr>
+                <td colspan="2">
+                    <th:block th:if="${!isConfirm}">
+                        <input type="submit" value="確認" />
+                    </th:block>
+                    <th:block th:if="${isConfirm}">
+                        <input type="submit" name="update" value="更新" /><input type="submit" name="backEdit" value="戻る" />
+                    </th:block>
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" th:field="*{version}">
+        <th:block th:if="${isConfirm}">
+            <input type="hidden" th:field="*{orderId}" />
+            <input type="hidden" th:field="*{orderer}" />
+            <input type="hidden" th:field="*{productName}" />
+            <input type="hidden" th:field="*{orderQuantity}" />
+            <input type="hidden" th:field="*{orderDate}" />
+            <input type="hidden" th:field="*{adress}" />
+            <input type="hidden" th:field="*{tel}" />
+        </th:block>
+    </form>
+</body>
+</html>

@@ -1,0 +1,25 @@
+# DB接続設定
+spring:
+  datasource:
+    url: jdbc:sqlite:./test.sqlite3
+    driverClassName: org.sqlite.JDBC
+
+ # メッセージ設定
+  messages:
+    basename: i18n/messages
+    cache-duration: 0s
+    encoding: UTF-8
+
+# SQLログ
+logging:
+  level:
+    com:
+      example:
+        springcrud:
+          mapper:
+            OrderMapper: DEBUG
+
+# MyBatis設定
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true  # キャメル→スネークに自動変換

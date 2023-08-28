@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <META http-equiv="Content-Script-Type" content="text/javascript">
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <META http-equiv="Expires" content="0">
+    <META http-equiv="Pragma" content="No-Cache">
+    <LINK rel="stylesheet" type="text/css" href="/css/common.css" th:href="@{/css/common.css}">
+    <SCRIPT type="text/javascript" src="/js/common.js" th:href="@{/js/common.js}" charset="UTF-8"></SCRIPT>
+    <title>Create page</title>
+</head>
+<body>
+    <p th:text="${msg}">please wait...</p>
+
+    <a th:href="@{/samplemenu}">サンプルメニューに戻る</a><br/>
+    <form th:with="action = ${isConfirm} ? @{/entry} : @{/confirmEntry}" method="POST" th:object="${orderForm}" th:action="${action}">
+        <!-- エラーメッセージの表示 -->
+        <ul th:if="${#fields.hasAnyErrors()}">
+            <li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
+        </ul>
+
+        <p th:text="${isConfirm ? '確認画面' : '入力画面'}">入力画面</p>
+        <table border="1">
+<!--
+            <tr>
+                <td>注文ID</td>
+                <td><input type="text" th:field="*{orderId}" /></td>
+            </tr>
+            <tr>
+                <td>注文者</td>
+                <td><input type="text" th:field="*{orderer}" /></td>
+            </tr>
+            <tr>
+                <td>商品名</td>
+                <td><input type="text" th:field="*{productName}" /></td>
+            </tr>
+            <tr>
+                <td>商品数</td>
+                <td><input type="text" th:field="*{orderQuantity}" /></td>
+            </tr>
+            <tr>
+                <td>注文日</td>
+                <td><input type="text" th:field="*{orderDate}" /></td>
+            </tr>
+            <tr>
+                <td>住所</td>
+                <td><input type="text" th:field="*{adress}" /></td>
+            </tr>
+            <tr>
+                <td>電話番号</td>
+                <td><input type="text" th:field="*{tel}" /></td>
+            </tr>
+ -->
+            <div th:with="" th:replace="~{common/input_field :: inputField(${isConfirm}, '注文ID', 'orderId')}" />
+            <div th:with="" th:replace="~{common/input_field :: inputField(${isConfirm}, '注文者', 'orderer')}" />
+            <div th:with="" th:replace="~{common/input_field :: inputField(${isConfirm}, '商品名', 'productName')}" />
+            <div th:with="" th:replace="~{common/input_field :: inputField(${isConfirm}, '商品数', 'orderQuantity')}" />
+            <div th:with="" th:replace="~{common/input_field :: inputField(${isConfirm}, '注文日', 'orderDate')}" />
+            <div th:with="" th:replace="~{common/input_field :: inputField(${isConfirm}, '住所', 'adress')}" />
+            <div th:with="" th:replace="~{common/input_field :: inputField(${isConfirm}, '電話番号', 'tel')}" />
+            <tr>
+                <td colspan="2">
+                    <th:block th:if="${!isConfirm}">
+                        <input type="submit" value="確認" />
+                    </th:block>
+                    <th:block th:if="${isConfirm}">
+                        <input type="submit" name="insert" value="新規登録" /><input type="submit" name="backEntry" value="戻る" />
+                    </th:block>
+                </td>
+            </tr>
+        </table>
+
+        <th:block th:if="${isConfirm}">
+            <input type="hidden" th:field="*{orderId}" />
+            <input type="hidden" th:field="*{orderer}" />
+            <input type="hidden" th:field="*{productName}" />
+            <input type="hidden" th:field="*{orderQuantity}" />
+            <input type="hidden" th:field="*{orderDate}" />
+            <input type="hidden" th:field="*{adress}" />
+            <input type="hidden" th:field="*{tel}" />
+        </th:block>
+    </form>
+</body>
+</html>

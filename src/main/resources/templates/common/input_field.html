@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<form>
+    <th:block th:fragment="inputField (isConfirm, label, name)">
+        <tr>
+            <!--/* ラベル */-->
+            <td th:text="${label}"></td>
+            <!--/* 入力画面 */-->
+            <th:block th:if="${!isConfirm}">
+                <td>
+                    <input type="text" th:field="*{__${name}__}" />
+                </td>
+            </th:block>
+            <!--/* 確認画面 */-->
+            <th:block th:if="${isConfirm}">
+                <td th:text="*{__${name}__}"></td>
+            </th:block>
+        </tr>
+    </th:block>
+</form>
+</body>
+</html>
