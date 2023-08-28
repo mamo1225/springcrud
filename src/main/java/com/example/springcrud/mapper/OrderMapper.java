@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.springcrud.dto.OrderDto;
 import com.example.springcrud.entity.OrderEntity;
 
 @Mapper
@@ -19,6 +18,6 @@ public interface OrderMapper {
 
     OrderEntity selectById(String orderId);
 
-    List<OrderEntity> selectByCond(OrderDto dto);
+    List<OrderEntity> selectByCond(String orderId, String orderer, String productName, int orderQuantity);
 
 }

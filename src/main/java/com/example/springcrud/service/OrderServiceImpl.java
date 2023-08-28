@@ -3,6 +3,7 @@ package com.example.springcrud.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class OrderServiceImpl implements OrderService {
         OrderDto dto = new OrderDto();
         BeanUtils.copyProperties(form, dto);
 //        return orderMapper.selectByCond(dto).stream().map(this::convertEntity2Dto).collect(Collectors.toList());
-        List<OrderEntity> orderList = orderMapper.selectByCond(dto);
+        List<OrderEntity> orderList = orderMapper.selectByCond(StringUtils.stripToNull(dto.getOrderId()), StringUtils.stripToNull(dto.getOrderer()), StringUtils.stripToNull(dto.getProductName()), dto.getOrderQuantity());
         return orderList.stream().map(this::convertEntity2Dto).collect(Collectors.toList());
 
     }

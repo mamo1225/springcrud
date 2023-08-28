@@ -79,21 +79,19 @@
              version
         from
              orderinfo
-<!--
         <where>
-          <if test="dto.orderId != null">
-            order_id = #{dto.orderId}
+          <if test="orderId != null">
+            order_id = #{orderId}
           </if>
-          <if test="dto.orderer != null">
-            AND orderer like #{dto.orderer}
+          <if test="orderer != null">
+            AND orderer = #{orderer}
           </if>
-          <if test="dto.productName != null">
-            AND product_name like #{dto.productName}
+          <if test="productName != null">
+            AND product_name = #{productName}
           </if>
-          <if test="dto.orderQuantity != null">
-            AND order_quantity >= #{dto.orderQuantity}
+          <if test="orderQuantity != null">
+            AND order_quantity >= #{orderQuantity}
           </if>
         </where>
- -->
     </select>
 </mapper>
